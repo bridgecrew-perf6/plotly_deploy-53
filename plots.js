@@ -105,11 +105,11 @@ function buildChart(sample) {
 function buildChart(sample) {
   // Use d3.json to load and retrieve the samples.json file 
   d3.json("samples.json").then((data) => {
-    var resultArray = data
-        .samples
-        .filter(sampleObj => {
-          return sampleObj.id == sample
-        });
+    var otuID = data.otu_ids;
+    var sampleValue = data.sample_values;
+    var sampleLabel = data.otu_labels.map((label) =>
+      label.replace(/\;/g, ', ')
+    );
     
 
     // Deliverable 1 Step 10. Use Plotly to plot the data with the layout. 
@@ -142,15 +142,11 @@ function buildChart(sample) {
 function buildChart(sample) {
   // Use d3.json to load the samples.json file 
   d3.json("samples.json").then((data) => {
-    var metadata = data.metadata;
-    var resultArray = metadata
-    .filter(sampleObj => {
-      return sampleObj.id == sample
-      });
-    console.log(data);
+    var metData = metadata.filter((obj) => obj.id == sample)[0];
+    
     
     // 3. Create a variable that holds the washing frequency.
-      var wash_freq = result.wfreq;
+    var washFreq = metData.wfreq;
      
     // 4. Create the trace for the gauge chart.
     var gaugeData = [
