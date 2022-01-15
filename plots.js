@@ -25,9 +25,8 @@ init();
 
 function optionChanged(newSample) {
   buildMetadata(newSample);
-  buildBarChart(newSample);
-  buildGaugeChart(newSample);
-  buildBubbleChart(newSample);
+  buildChart(newSample);
+  
 }
 
 // Demographics Panel 
@@ -38,7 +37,7 @@ function buildMetadata(sample) {
     var resultArray = metadata.filter(sampleObj => sampleObj.id == sample);
     var result = resultArray[0];
     // Use d3 to select the panel with id of `#sample-metadata`
-    const PANEL = d3.select("#sample-metadata");
+    var PANEL = d3.select("#sample-metadata");
 
     // Use `.html("") to clear any existing metadata
     PANEL.html("");
@@ -54,7 +53,7 @@ function buildMetadata(sample) {
 }
 
 // 1. Create the buildCharts function.
-function buildBarChart(sample) {
+function buildChart(sample) {
   // 2. Use d3.json to load and retrieve the samples.json file 
   d3.json("samples.json").then((data) => {
     // 3. Create a variable that holds the samples array. 
@@ -103,7 +102,7 @@ function buildBarChart(sample) {
 }
 // Bar and Bubble charts
 // Create the buildCharts function.
-function buildBubbleChart(sample) {
+function buildChart(sample) {
   // Use d3.json to load and retrieve the samples.json file 
   d3.json("samples.json").then((data) => {
     var resultArray = data
@@ -140,7 +139,7 @@ function buildBubbleChart(sample) {
   });
 }
 // Create the buildChart function.
-function buildGaugeChart(sample) {
+function buildChart(sample) {
   // Use d3.json to load the samples.json file 
   d3.json("samples.json").then((data) => {
     var metadata = data.metadata;
