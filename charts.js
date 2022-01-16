@@ -15,7 +15,7 @@ function init() {
 
     // Use the first sample from the list to build the initial plots
     var firstSample = sampleNames[0];
-    buildCharts(firstSample);
+    buildChart(firstSample);
     buildMetadata(firstSample);
   });
 }
@@ -61,10 +61,9 @@ function buildChart(sample) {
     // 4. Create a variable that filters the samples for the object with the desired sample number.
    var sampleArray = samples.filter(sampleObj => sampleObj.id == sample);
    var metadata = data.metadata
-   var metaArray = metadata.filter(sampleObj => sampleObj.id == sample);
     //  5. Create a variable that holds the first sample in the array.
    var result = sampleArray[0];
-   var result1 = metaArray[0];
+   
     // 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
    var otu_ids = result.otu_ids;
    var otu_labels = result.otu_labels
@@ -113,12 +112,14 @@ function buildChart(sample) {
     ];
     // 2. Create the layout for the bubble chart.
     var bubbleLayout = {
-      title: "OTU ID",
-      showlegend: false,
+      title: "Top 10 Bacterial Species",
+      xaxis: {title: "Sample Values"},
+      yaxis: {title: "ID's"}
     };
   
     // 3. Create a variable that holds the washing frequency.
-    var washFreq = metData.wfreq;
+    var washFreq = parseFloat(result1.wfreq)
+    console.log(washFreq)
      
     // 4. Create the trace for the gauge chart.
     var gaugeData = [
