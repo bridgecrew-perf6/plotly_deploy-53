@@ -101,20 +101,6 @@ function buildChart(sample) {
   });
 }
 // Bar and Bubble charts
-// Create the buildCharts function.
-function buildChart(sample) {
-  // Use d3.json to load and retrieve the samples.json file 
-  d3.json("samples.json").then((data) => {
-    var otuID = data.otu_ids;
-    var sampleValue = data.sample_values;
-    var sampleLabel = data.otu_labels.map((label) =>
-      label.replace(/\;/g, ', ')
-    );
-    
-
-    // Deliverable 1 Step 10. Use Plotly to plot the data with the layout. 
-    Plotly.newPlot("bubble chart",bubbleData, bubbleLayout); 
-
     // 1. Create the trace for the bubble chart.
     var bubbleData = [
       {
@@ -138,13 +124,7 @@ function buildChart(sample) {
     Plotly.newPlot('bubble', data, bubbleLayout); 
   });
 }
-// Create the buildChart function.
-function buildChart(sample) {
-  // Use d3.json to load the samples.json file 
-  d3.json("samples.json").then((data) => {
-    var metData = metadata.filter((obj) => obj.id == sample)[0];
-    
-    
+  
     // 3. Create a variable that holds the washing frequency.
     var washFreq = metData.wfreq;
      
